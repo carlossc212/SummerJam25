@@ -17,8 +17,9 @@ public class UltraSlotsManager : MonoBehaviour
     }
 
     private void onBeat(int currentBeat) {
-        addActiveSlot();
-
+        if (currentBeat % 2 == 0) { 
+            addActiveSlot();
+        }
     }
 
     private void addActiveSlot() {

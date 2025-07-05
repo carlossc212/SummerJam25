@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{dee2457f-16ac-4112-b700-4ff8e9f4487b}">
+		<property name="assetPath">
+			<value>162493__tasmanianpower__vinyl-rewind.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.6804761904761905</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{493dfa85-e146-4ab0-8c84-59ac914e62c2}</destination>
+		</relationship>
+	</object>
+</objects>

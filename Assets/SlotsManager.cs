@@ -10,10 +10,12 @@ public class SlotsManager : MonoBehaviour
     [SerializeField] private KeyCode keyCode;
     private SlotController lastSlot;
     private KnobsManager knobsManager;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameController = FindObjectOfType<GameController>();
         music = FindObjectOfType<Music>();
         activePositions = new List<int>();
         slotControllers = GetComponentsInChildren<SlotController>();
@@ -25,13 +27,20 @@ public class SlotsManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(keyCode)) {
+        if (Input.GetKeyDown(keyCode) && !gameController.isGameOver) {
             guessSlot();
         }
     }
 
     private void guessSlot() {
-        lastSlot.guess(activePositions.Contains(0));
+        bool guess = lastSlot.guess(activePositions.Contains(0));
+        if (!guess)
+        {
+            gameController.loseLive();
+        }
+        else { 
+            activePositions.Remove(0);
+        }
     }
 
     private void onBeat(int beat) {
@@ -47,6 +56,9 @@ public class SlotsManager : MonoBehaviour
             if (nextPosition >= 0)
             { // Solo añade la posición si sigue siendo válida (mayor o igual a 0)
                 newPositions.Add(nextPosition);
+            }
+            else {
+                gameController.loseLive();
             }
         }
         activePositions = newPositions;

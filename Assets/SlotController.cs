@@ -18,13 +18,15 @@ public class SlotController : MonoBehaviour
         this.GetComponent<Renderer>().material.color = Color.red;
     }
 
-    public void guess(bool correct) {
+    public bool guess(bool correct) {
         if (correct)
         {
             this.GetComponent<Renderer>().material.color = Color.green;
+            return true;
         }
         else {
             this.GetComponent<Renderer>().material.color = Color.red;
+            return false;
         }
     }
 

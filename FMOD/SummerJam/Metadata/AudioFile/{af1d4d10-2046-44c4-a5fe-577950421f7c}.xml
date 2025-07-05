@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{af1d4d10-2046-44c4-a5fe-577950421f7c}">
+		<property name="assetPath">
+			<value>375399__sgossner__snare-sfx_click.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.19510204081632654</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{493dfa85-e146-4ab0-8c84-59ac914e62c2}</destination>
+		</relationship>
+	</object>
+</objects>

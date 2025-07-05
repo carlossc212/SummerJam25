@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class KnobController : MonoBehaviour
 {
     private Transform actualColorTransform, askedColorTransform, actualColorPivotTransform;
     private int actualColor, askedColor;
+    [SerializeField] EventReference clickSound, matchClickSound, breakClickSound;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,14 @@ public class KnobController : MonoBehaviour
         updateTransformColor(actualColorTransform, actualColor);
         UpdatePivotRotation(actualColorPivotTransform, actualColor);
 
+        if (actualColor == askedColor)
+        {
+            RuntimeManager.PlayOneShot(matchClickSound);
+        }
+        else {
+            RuntimeManager.PlayOneShot(clickSound);
+        }
+
     }
 
     public void updateAskedColor() {
@@ -63,7 +73,7 @@ public class KnobController : MonoBehaviour
         }
 
         updateTransformColor(askedColorTransform, randomValue);
-
+        RuntimeManager.PlayOneShot(breakClickSound);
         askedColor = randomValue;
     }
 
