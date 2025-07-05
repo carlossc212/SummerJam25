@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{eeeaa382-d8aa-4edd-ac1c-758728564f24}">
+		<property name="assetPath">
+			<value>Les Rythmes Digitales – Music makes you lose control.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>227.05632653061224</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{493dfa85-e146-4ab0-8c84-59ac914e62c2}</destination>
+		</relationship>
+	</object>
+</objects>
