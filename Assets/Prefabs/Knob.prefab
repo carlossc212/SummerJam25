@@ -297,6 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cecb196bd7ecc648aecc493ca6b4e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualColorTransform: {fileID: 2684127756781504370}
+  askedColorTransform: {fileID: 6757300667689454014}
+  actualColorPivotTransform: {fileID: 9053549812948225778}
   clickSound:
     Guid:
       Data1: 1090995344
@@ -318,6 +321,9 @@ MonoBehaviour:
       Data3: 345825202
       Data4: 1342056434
     Path: event:/FX/Click01
+  bumpHeight: 0.1
+  bumpScaleHeight: 0.2
+  bumpScaleDuration: 0.1
 --- !u!65 &3649205724046698824
 BoxCollider:
   m_ObjectHideFlags: 0
