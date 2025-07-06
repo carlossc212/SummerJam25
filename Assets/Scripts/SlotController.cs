@@ -1,33 +1,100 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SlotController : MonoBehaviour
 {
+    [SerializeField] private float bumpHeight = -10f;
+    [SerializeField] private float bumpDuration = 0.5f;
 
-    public void activate() {
-        this.GetComponent<Renderer>().material.color = Color.yellow;
+    private Vector3 initialLocalPosition;
+    private Coroutine bumpCoroutine;
+
+    private Renderer _renderer;
+
+    private void Awake()
+    {
+        initialLocalPosition = transform.localPosition;
+        _renderer = GetComponent<Renderer>();
+    }
+
+    public void activate()
+    {
+        SetColor(Color.yellow);
     }
 
     public void deactivate()
     {
-        this.GetComponent<Renderer>().material.color = Color.gray;
+        SetColor(Color.gray);
     }
 
-    public void block() {
-        this.GetComponent<Renderer>().material.color = Color.red;
+    public void block()
+    {
+        SetColor(Color.red);
     }
 
-    public bool guess(bool correct) {
+    public bool guess(bool correct)
+    {
         if (correct)
         {
-            this.GetComponent<Renderer>().material.color = Color.green;
+            SetColor(Color.green);
             return true;
         }
-        else {
-            this.GetComponent<Renderer>().material.color = Color.red;
+        else
+        {
+            SetColor(Color.red);
             return false;
         }
     }
 
+    private void SetColor(Color newColor)
+    {
+        if (_renderer.material.color == newColor)
+            return;
+
+        _renderer.material.color = newColor;
+        PlayBump();
+    }
+
+    private void PlayBump()
+    {
+        if (bumpCoroutine != null)
+        {
+            StopCoroutine(bumpCoroutine);
+        }
+        bumpCoroutine = StartCoroutine(BumpTween());
+    }
+
+    private IEnumerator BumpTween()
+    {
+        float elapsed = 0f;
+        Vector3 startPos = initialLocalPosition;
+        Vector3 peakPos = initialLocalPosition + Vector3.up * bumpHeight;
+
+        while (elapsed < bumpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / bumpDuration);
+            float easedT = EaseOutExpo(t);
+            transform.localPosition = Vector3.Lerp(startPos, peakPos, easedT);
+            yield return null;
+        }
+
+        elapsed = 0f;
+
+        while (elapsed < bumpDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / bumpDuration);
+            float easedT = EaseOutExpo(t);
+            transform.localPosition = Vector3.Lerp(peakPos, startPos, easedT);
+            yield return null;
+        }
+
+        transform.localPosition = initialLocalPosition;
+    }
+
+    private float EaseOutExpo(float t)
+    {
+        return t >= 1f ? 1f : 1 - Mathf.Pow(2f, -10f * t);
+    }
 }
