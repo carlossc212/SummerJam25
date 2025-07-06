@@ -11,7 +11,7 @@ public class Music : MonoBehaviour
     public event Action<int> OnBeat;
     public event Action<bool> OnWin;
 
-    [SerializeField] private EventReference m_Reference;
+    [SerializeField] private string m_Reference;
     private FMOD.Studio.EventInstance instance;
     private BeatSystem bS;
 
@@ -30,12 +30,7 @@ public class Music : MonoBehaviour
         Debug.Log("Music: Subscribed to BeatSystem events (OnBeat, OnSongFinished).");
 
         // Creamos la instancia de FMOD
-        if (m_Reference.IsNull)
-        {
-            Debug.LogError("Music: FMOD EventReference (m_Reference) is not assigned in the Inspector! Music cannot start.");
-            return;
-        }
-        instance = FMODUnity.RuntimeManager.CreateInstance(m_Reference.Path);
+        instance = FMODUnity.RuntimeManager.CreateInstance(m_Reference);
 
         // Verificamos que la instancia de FMOD sea válida antes de usarla
         if (!instance.isValid())
