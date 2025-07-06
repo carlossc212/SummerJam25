@@ -66,6 +66,10 @@ public class SlotsManager : MonoBehaviour
     }
 
     private void updateSlotsVisuals() {
+
+        if (!Application.isPlaying) return;
+
+
         float normalizedCorrectKnobsCount = knobsManager.GetCorrectKnobsNormalized();
         int correctSlotsCount = (int)(normalizedCorrectKnobsCount * slotControllers.Length);
 

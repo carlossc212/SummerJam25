@@ -28,6 +28,8 @@ public class Music : MonoBehaviour
     // Métodos que serán llamados cuando los eventos se disparen
     private void HandleBeatEvent(int currentBeat)
     {
+        if (!Application.isPlaying) return;
+
         OnBeat?.Invoke(currentBeat);
     }
 }
