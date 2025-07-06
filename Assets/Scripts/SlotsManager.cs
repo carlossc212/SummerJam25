@@ -27,7 +27,7 @@ public class SlotsManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(keyCode) && !gameController.isGameOver) {
+        if (Input.GetKeyDown(keyCode) && gameController.gameActive) {
             guessSlot();
         }
     }

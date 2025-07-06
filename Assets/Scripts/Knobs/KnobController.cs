@@ -8,10 +8,14 @@ public class KnobController : MonoBehaviour
     private Transform actualColorTransform, askedColorTransform, actualColorPivotTransform;
     private int actualColor, askedColor;
     [SerializeField] EventReference clickSound, matchClickSound, breakClickSound;
+    private GameController gameController;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        gameController = FindObjectOfType<GameController>();
+
         int startColor = Random.Range(0, 3);
 
         actualColor = startColor;
@@ -39,6 +43,7 @@ public class KnobController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!gameController.gameActive) return;
         updateActualColor();
     }
 
